@@ -6,11 +6,25 @@ class Day1 extends Day {
   }
 
   solveForPartOne(input: string): string {
-    return input
+    const splitByBlankLine = input.split('\n\n')
+    const splitByWhitespaceAsNumbers = splitByBlankLine.map((items) => items.split('\n').map(Number))
+    const caloriesPerElf = [...splitByWhitespaceAsNumbers].map((calories) =>
+      calories.reduce((totalCalories, currentCalories) => totalCalories + currentCalories, 0),
+    )
+
+    return Math.max(...caloriesPerElf).toString()
   }
 
   solveForPartTwo(input: string): string {
-    return input
+    const splitByBlankLine = input.split('\n\n')
+    const splitByWhitespaceAsNumbers = splitByBlankLine.map((items) => items.split('\n').map(Number))
+    const caloriesPerElf = [...splitByWhitespaceAsNumbers].map((calories) =>
+      calories.reduce((totalCalories, currentCalories) => totalCalories + currentCalories, 0),
+    )
+    const floatArrayCaloriesPerElf = new Float64Array(caloriesPerElf)
+    const sortedCaloriesPerEl = floatArrayCaloriesPerElf.sort().reverse()
+
+    return (sortedCaloriesPerEl[0] + sortedCaloriesPerEl[1] + sortedCaloriesPerEl[2]).toString()
   }
 }
 
