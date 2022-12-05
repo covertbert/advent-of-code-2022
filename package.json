@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && tsc",
     "test": "jest",
+    "test:watch": "jest --watch --onlyChanged",
     "setup": "node src/setup.js",
     "start": "npm run build && node build/index.js",
     "prettier:check": "prettier './**/*.{js,ts}' --check",
