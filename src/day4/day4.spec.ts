@@ -11,4 +11,7 @@ describe('On Day 4', () => {
   it(`part1 is identity function`, () => {
     expect(day4.solveForPartOne(input)).toBe('2')
   })
+  it(`part2 is identity function`, () => {
+    expect(day4.solveForPartTwo(input)).toBe('4')
+  })
 })

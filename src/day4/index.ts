@@ -34,7 +34,23 @@ class Day4 extends Day {
   }
 
   solveForPartTwo(input: string): string {
-    return input
+    const splitIntoPairs = input.split('\n').map((pair) => pair.split(','))
+    const listFromRange = splitIntoPairs.map((pair) => {
+      const [first, second] = pair
+      return [this.rangeToList(first), this.rangeToList(second)]
+    })
+
+    const totals = listFromRange.reduce((total, currentPair) => {
+      const [first, second] = currentPair
+
+      if (first.some((item) => second.includes(item)) || second.some((item) => first.includes(item))) {
+        return total + 1
+      }
+
+      return total
+    }, 0)
+
+    return totals.toString()
   }
 }
 
