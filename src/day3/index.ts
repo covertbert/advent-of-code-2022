@@ -37,8 +37,6 @@ class Day3 extends Day {
   solveForPartTwo(input: string): string {
     const splitByNewLine = input.split('\n')
 
-    console.log(splitByNewLine.length)
-
     const rucksacksChunked = splitByNewLine.reduce((resultArray, item, index) => {
       const chunkIndex = Math.floor(index / 3)
 
@@ -49,8 +47,6 @@ class Day3 extends Day {
       return [...resultArray.slice(0, -1), [...resultArray[chunkIndex], item]]
     }, [] as string[][])
 
-    console.log(rucksacksChunked.length)
-
     const commonLetters = rucksacksChunked.reduce((allCommonLetters, currentRucksackChunk) => {
       const [first, second, third] = currentRucksackChunk
       const commonLetters: string[] = first
@@ -59,8 +55,6 @@ class Day3 extends Day {
 
       return [...allCommonLetters, ...commonLetters[0]]
     }, [])
-
-    console.log(commonLetters.length)
 
     const totalScore = commonLetters.reduce(
       (runningTotal, currentLetter) => runningTotal + this.getScoreFromLetter(currentLetter),
