@@ -35,7 +35,39 @@ class Day3 extends Day {
   }
 
   solveForPartTwo(input: string): string {
-    return input
+    const splitByNewLine = input.split('\n')
+
+    console.log(splitByNewLine.length)
+
+    const rucksacksChunked = splitByNewLine.reduce((resultArray, item, index) => {
+      const chunkIndex = Math.floor(index / 3)
+
+      if (!resultArray[chunkIndex]) {
+        return [...resultArray, [item]]
+      }
+
+      return [...resultArray.slice(0, -1), [...resultArray[chunkIndex], item]]
+    }, [] as string[][])
+
+    console.log(rucksacksChunked.length)
+
+    const commonLetters = rucksacksChunked.reduce((allCommonLetters, currentRucksackChunk) => {
+      const [first, second, third] = currentRucksackChunk
+      const commonLetters: string[] = first
+        .split('')
+        .filter((letter) => second.includes(letter) && third.includes(letter))
+
+      return [...allCommonLetters, ...commonLetters[0]]
+    }, [])
+
+    console.log(commonLetters.length)
+
+    const totalScore = commonLetters.reduce(
+      (runningTotal, currentLetter) => runningTotal + this.getScoreFromLetter(currentLetter),
+      0,
+    )
+
+    return totalScore.toString()
   }
 }
 
